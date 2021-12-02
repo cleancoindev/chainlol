@@ -8,6 +8,21 @@
       });
   }
 
+  function solScanURL(path, env) {
+    if (env === 'devnet' || env === 'testnet') {
+      return `https://solscan.io/${path}?cluster=${env}`
+    }
+    return `https://solscan.io/${path}`;
+  }
+
+  function etherscanURL(path, env) {
+    const testNets = ['ropsten', 'kovan', 'goerli', 'rinkeby'];
+    if (env && testNets.includes(env)) {
+      return `https://${env}.etherscan.io/${path}`;
+    }
+    return `https://etherscan.io/${path}`;
+  }
+
   function redirectTo(url) {
     window.location = url
   }
@@ -26,21 +41,42 @@
       case "commands":
       case "help":
         break;
+
       case "p":
       case "price":
         const coinName = query[1]
         redirectTo(`https://www.coingecko.com/en/coins/${coinName}`)
         break;
-      case "tx":
-      case "w":
-      case "wallet":
+
+      case "tx": {
         const hash = query[1]
-        if (hash.startsWith("0x") || hash.includes(".eth")) {
-          redirectTo(`https://etherscan.io/address/${hash}`)
+        const env = query[2]
+        if (hash.startsWith("0x")) {
+          redirectTo(etherscanURL(`tx/${hash}`, env))
         } else {
-          redirectTo(`https://solscan.io/tx/${hash}`)
+          redirectTo(solScanURL(`tx/${hash}`, env))
         }
         break;
+      }
+
+      case "w":
+      case "wallet": {
+        const hash = query[1]
+        const env = query[2]
+        if (hash.startsWith("0x") || hash.includes(".eth")) {
+          redirectTo(etherscanURL(`address/${hash}`, env))
+        } else {
+          redirectTo(solScanURL(`account/${hash}`, env))
+        }
+        break;
+      }
+
+      case "dune": {
+        const q = query.slice(1).join(' ')
+        redirectTo(`https://dune.xyz/browse/dashboards?q=${encodeURIComponent(q)}`)
+        break;
+      }
+
       default:
         redirectTo(`http://www.google.com/search?q=${encodeURIComponent(queryParam)}`)
     }
