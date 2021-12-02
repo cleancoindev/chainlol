@@ -1,0 +1,102 @@
+<html>
+
+<script>
+  if ( "serviceWorker" in navigator ) {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(function(err) {
+        console.log('Service Worker registration failed, ignoring');
+      });
+  }
+
+  function redirectTo(url) {
+    window.location = url
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  const queryParam = params.get("q")
+  const query = queryParam.split(" ")
+  if (!query) {
+    window.location = "https://www.google.com"
+  }
+  const commandName = query[0]
+  if (commandName.endsWith(".eth")) {
+    redirectTo(`https://etherscan.io/address/${commandName}`)
+  } else {
+    switch (commandName) {
+      case "commands":
+      case "help":
+        break;
+      case "p":
+      case "price":
+        const coinName = query[1]
+        redirectTo(`https://www.coingecko.com/en/coins/${coinName}`)
+        break;
+      case "tx":
+      case "w":
+      case "wallet":
+        const hash = query[1]
+        if (hash.startsWith("0x") || hash.includes(".eth")) {
+          redirectTo(`https://etherscan.io/address/${hash}`)
+        } else {
+          redirectTo(`https://solscan.io/tx/${hash}`)
+        }
+        break;
+      default:
+        redirectTo(`http://www.google.com/search?q=${encodeURIComponent(queryParam)}`)
+    }
+  }
+</script>
+<style>
+  code {
+    background-color: gainsboro;
+  }
+
+  ol {
+    line-height: 22px;
+  }
+</style>
+
+<body>
+  <h1>Wagmify Commands</h1>
+  <table>
+    <tr>
+      <td style="min-width:150px;"><b>Command</b></td>
+      <td style="min-width:250px;"><b>Example</b></td>
+      <td><b>Description</b></td>
+    </tr>
+    <tr>
+      <td>help, commands</td>
+      <td>commands</td>
+      <td>Lists available commands.</td>
+    </tr>
+    <tr>
+      <td>p, price</td>
+      <td>p olympus</td>
+      <td>Opens CoinGeiko dashboard for the spelled out coin.</td>
+    </tr>
+    <tr>
+      <td>tx</td>
+      <td>tx 0x000.. or tx 1123123 for SOL</td>
+      <td>Opens Etherscan or Solscan depending on the hash type.</td>
+    </tr>
+    <tr>
+      <td>w, wallet</td>
+      <td>w kunalm.eth</td>
+      <td>Opens the walllet based on the hash or the ENS name.</td>
+    </tr>
+  </table>
+
+  <h4>Getting Started</h4>
+  <ol>
+    <li>Open Chrome and click the three dots. Click <code>Settings</code> and scroll down to
+      <code>Search engines</code>.</li>
+    <li>Click <code>Manage search engines</code>.</li>
+    <li>Add a new search engine with the URL <a href="https://wagmify.me/?q=%s">https://wagmify.me/?q=%s</a>. Set both
+      name and keyword to wagmify.</li>
+    <li>Click on the tripple dot and make this the default search engine.</li>
+  </ol>
+
+  <a href="https://github.com/TritonLabs/wagmify.me">Source</a>
+</body>
+
+</html>

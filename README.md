@@ -1,3 +1,8 @@
+---
+layout: github-markdown.njk
+title: Wagmify.me — Fastest Way to Navigate Crypto
+---
+
 # Wagmify.me — Fastest Way to Navigate Crypto
 
 The tool makes it faster to navigate to common crypto sites — instead of going to coin geiko and searching for olympus, you can just type in `p olympus` and the tool will automatically redirect you.
