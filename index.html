@@ -29,7 +29,7 @@
       case "p":
       case "price":
         const coinName = query[1]
-        redirectTo(`https://coinmarketcap.com/currencies/${coinName}`)
+        redirectTo(`https://www.coingecko.com/en/coins/${coinName}`)
         break;
       case "tx":
       case "w":
@@ -46,6 +46,15 @@
     }
   }
 </script>
+<style>
+  code {
+    background-color: gainsboro;
+  }
+
+  ol {
+    line-height: 22px;
+  }
+</style>
 
 <body>
   <h1>Wagmify Commands</h1>
@@ -72,11 +81,22 @@
     </tr>
     <tr>
       <td>w, wallet</td>
-      <td>w kunalm.eth </td>
+      <td>w kunalm.eth</td>
       <td>Opens the walllet based on the hash or the ENS name.</td>
     </tr>
   </table>
 
+  <h4>Getting Started</h4>
+  <ol>
+    <li>Open Chrome and click the three dots. Click <code>Settings</code> and scroll down to
+      <code>Search engines</code>.</li>
+    <li>Click <code>Manage search engines</code>.</li>
+    <li>Add a new search engine with the URL <a href="http://wagmify.me/?q=%s">http://wagmify.me/?q=%s</a>. Set both
+      name and keyword to wagmify.</li>
+    <li>Click on the tripple dot and make this the default search engine.</li>
+  </ol>
+
+  <a href="https://github.com/TritonLabs/wagmify.me">Source</a>
 </body>
 
 </html>
