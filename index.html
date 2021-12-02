@@ -228,6 +228,16 @@
       break;
     }
 
+    case "nft": {
+      const q = query.slice(1).join(' ')
+      if (!q) {
+        redirectTo('https://opensea.io/')
+        break
+      }
+      redirectTo(`https://opensea.io/assets?search[query]=${encodeURIComponent(q)}`)
+      break
+    }
+
     case "tx": {
       const hash = query[1]
       const env = query[2]
@@ -236,7 +246,7 @@
       } else {
         redirectTo(solScanURL(`tx/${hash}`, env))
       }
-      break;
+      break
     }
 
     case "w":
@@ -248,7 +258,7 @@
       } else {
         redirectTo(solScanURL(`account/${hash}`, env))
       }
-      break;
+      break
     }
 
     case "dune": {
