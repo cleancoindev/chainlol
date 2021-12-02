@@ -1,8 +1,17 @@
 <html>
+
 <script>
+  if ( "serviceWorker" in navigator ) {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(function(err) {
+        console.log('Service Worker registration failed, ignoring');
+      });
+  }
+
   function redirectTo(url) {
     window.location = url
   }
+
   const params = new URLSearchParams(window.location.search)
   const queryParam = params.get("q")
   const query = queryParam.split(" ")
