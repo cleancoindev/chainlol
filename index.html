@@ -317,6 +317,11 @@
       break
     }
 
+    case "wagmi": {
+      redirectTo('https://twitter.com/search?q=%23wagmi&f=live')
+      break
+    }
+
     default: {
       if (query.length === 1 && query[0].endsWith('.eth')) {
         redirectTo(`https://etherscan.io/address/${commandName}`)
