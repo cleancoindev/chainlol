@@ -267,6 +267,26 @@
       break;
     }
 
+    case "ipfs": {
+      const cid = query[1]
+      if (!cid) {
+        redirectTo('https://app.pinata.cloud/')
+        break
+      }
+      redirectTo(`https://gateway.ipfs.io/ipfs/${cid}`)
+      break
+    }
+
+    case "ipns": {
+      const url = query[1]
+      if (!url) {
+        redirectTo('https://app.pinata.cloud/')
+        break
+      }
+      redirectTo(`https://gateway.ipfs.io/ipns/${url}`)
+      break
+    }
+
     default: {
       if (query.length === 1 && query[0].endsWith('.eth')) {
         redirectTo(`https://etherscan.io/address/${commandName}`)
