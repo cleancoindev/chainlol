@@ -323,8 +323,35 @@
           break
         }
 
+        case "gm":
+        case "gmi":
         case "wagmi": {
-          redirectTo('https://twitter.com/search?q=%23wagmi&f=live')
+          redirectTo('./gm.html')
+          break
+        }
+
+        case "ngmi": {
+          const ngmis = [
+            'https://meta.com/',
+            'https://www.sec.gov/',
+            'https://www.alphabet.com/',
+          ]
+          redirectTo(ngmis[Math.floor(Math.random()*ngmis.length)])
+          break
+        }
+
+        case "elon": {
+          const elon = [
+            '1392030108274159619',
+            '1375033483148451842',
+            '1387290679794089986',
+            '1395027147161489412',
+            '1454876031232380928',
+            '1451015695106560000',
+            '1426558939336937481'
+          ]
+          const id = elon[Math.floor(Math.random()*elon.length)];
+          redirectTo(`https://twitter.com/elonmusk/status/${id}`)
           break
         }
 
