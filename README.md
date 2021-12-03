@@ -1,4 +1,4 @@
-# Wagmify.me — Fastest Way to Navigate Crypto
+# Wagmify.me — Navigate Crypto
 
 The tool makes it faster to navigate to common crypto sites — instead of going to coin geiko and searching for olympus, you can just type in `p olympus` and the tool will automatically redirect you.
 
@@ -12,6 +12,11 @@ p, price | p olympus | Opens CoinGeiko dashboard for the spelled out coin.
 tx | tx 0x000.. or tx 1123123 for SOL | Opens Etherscan or Solscan depending on the hash type.
 w, wallet | w vitalik.eth | Opens the walllet based on the hash or the ENS name.
 commands | commands | Lists available commands.
+nft | nft chain runners | Searches for the NFT keyword in the OpeanSea.
+s, swap | swap ohm dai | Opens uniswap with the two coins to swap.
+ipfs | ipfs Qmd8nEQ2K6Uw67oFjM8FQo6K8qdvkaKMDwN91TBprC7EJ6 | Opens the file with the hash on IPFS.
+ar | ar Qmd8nEQ2K6Uw67oFjM8FQo6K8qdvkaKMDwN91TBprC7EJ6 | Opens the file with the hash on ARWeave.
+ipns | ipns kunalm.xyz | Opens the domain on IPNS.
 
 ## Setup
 
