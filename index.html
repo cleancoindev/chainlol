@@ -306,6 +306,17 @@
       break
     }
 
+    case "arweave":
+    case "ar": {
+      const cid = query[1]
+      if (!cid) {
+        redirectTo('https://viewblock.io/arweave')
+        break
+      }
+      redirectTo(`https://arweave.net/${cid}`)
+      break
+    }
+
     default: {
       if (query.length === 1 && query[0].endsWith('.eth')) {
         redirectTo(`https://etherscan.io/address/${commandName}`)
