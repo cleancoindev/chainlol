@@ -55,6 +55,23 @@
         window.location = url
       }
 
+      function getQueryParams() {
+        // First, check if the command is in the query params
+        const searchParams = new URLSearchParams(window.location.search)
+        const searchQuery = searchParams.get("q")
+        if (searchQuery) {
+          return searchQuery.split(" ")
+        }
+        // Next, check if it's in the hash params
+        const hashParams = new URLSearchParams((window.location.hash ?? '').split('?')[1])
+        const hashQuery = hashParams.get("q")
+        if (hashQuery) {
+          return hashQuery.split(" ")
+        }
+        // Otherwise, there is no command set
+        return ["homepage"]
+      }
+
       // Top 100 CoinGecko coins. Hardcoded to provide fast lookups.
       const coingeckoSymbolToID = {
         'btc': 'bitcoin',
@@ -197,14 +214,11 @@
         'ohm': '0x383518188c0c6d7730d91b2c03a03c837814a899',
       }
 
-      const params = new URLSearchParams(window.location.search)
-      const queryParam = params.get("q")
-      const query = queryParam.split(" ")
-      if (!query) {
-        window.location = "https://www.google.com"
-      }
+      const query = getQueryParams()
+
       const commandName = query[0]
       switch (commandName) {
+        case "homepage":
         case "commands":
         case "help":
           break;
@@ -373,7 +387,7 @@
           if (query.length === 1 && query[0].endsWith('.eth')) {
             redirectTo(`https://etherscan.io/address/${commandName}`)
           } else {
-            redirectTo(`http://www.google.com/search?q=${encodeURIComponent(queryParam)}`)
+            redirectTo(`http://www.google.com/search?q=${encodeURIComponent(query.join(" "))}`)
           }
         }
       }
