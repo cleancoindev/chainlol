@@ -24,7 +24,7 @@ ipns | ipns kunalm.xyz | Opens the domain on IPNS.
 
 2. Click `Manage Search Engines`.
 
-3. Add a new search engine with the URL `http://wagmify.me/?q=%s`. Set both name and keyword to `wagmify`.
+3. Add a new search engine with the URL `https://wagmify.me/#?q=%s`. Set both name and keyword to `wagmify`.
 
 4. Make this the default search engine.
 
