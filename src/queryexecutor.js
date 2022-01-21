@@ -1,12 +1,13 @@
+const {AddressResolver} = require('./addressresolver.js');
 
 class QueryExecutor {
 
   constructor() {}
 
-  handleQuery() {
+  async handleQuery() {
     const query = getQueryParams_();
 
-    const commandName = query[0]
+    const commandName = query[0];
     switch (commandName) {
       case "homepage":
       case "commands":
@@ -16,10 +17,10 @@ class QueryExecutor {
       case "p":
       case "price":
       case "coin": {
-        let name = query[1]
+        let name = query[1];
         if (!name) {
-          redirectTo_("https://www.coingecko.com")
-          break
+          redirectTo_("https://www.coingecko.com");
+          break;
         }
 
         if (name.startsWith('$')) {
@@ -29,8 +30,8 @@ class QueryExecutor {
         if (link) {
           name = link;
         }
-        redirectTo_(`https://www.coingecko.com/en/coins/${name}`)
-        break
+        redirectTo_(`https://www.coingecko.com/en/coins/${name}`);
+        break;
       }
 
       case "swap":
@@ -60,92 +61,90 @@ class QueryExecutor {
       }
 
       case "nft": {
-        const q = query.slice(1).join(' ')
+        const q = query.slice(1).join(' ');
         if (!q) {
-          redirectTo_('https://opensea.io/')
-          break
+          redirectTo_('https://opensea.io/');
+          break;
         }
-        redirectTo_(`https://opensea.io/assets?search[query]=${encodeURIComponent(q)}`)
-        break
+        redirectTo_(`https://opensea.io/assets?search[query]=${encodeURIComponent(q)}`);
+        break;
       }
 
       case "tx": {
-        const hash = query[1]
-        const env = query[2]
+        const hash = query[1];
+        const env = query[2];
         if (hash.startsWith("0x")) {
-          redirectTo_(etherscanURL_(`tx/${hash}`, env))
+          redirectTo_(etherscanURL_(`tx/${hash}`, env));
         } else {
-          redirectTo_(solScanURL_(`tx/${hash}`, env))
+          redirectTo_(solScanURL_(`tx/${hash}`, env));
         }
-        break
+        break;
       }
 
       case "a":
-      case "address":
+      case "account":
+      case "address":    
       case "contract":
       case "w":
       case "wallet": {
-        const hash = query[1]
-        const env = query[2]
-        if (hash.startsWith("0x") || hash.includes(".eth")) {
-          redirectTo_(etherscanURL_(`address/${hash}`, env))
-        } else {
-          redirectTo_(solScanURL_(`account/${hash}`, env))
-        }
-        break
+        const hash = query[1];
+        const env = query[2];
+        const url = await (new AddressResolver(hash, env)).getDestinationURL();
+        redirectTo_(url);
+        break;
       }
 
       case "dune": {
-        let q = query.slice(1).join(' ')
+        let q = query.slice(1).join(' ');
         if (q === 'new') {
-          redirectTo_('https://dune.xyz/queries')
+          redirectTo_('https://dune.xyz/queries');
           break;
         }
         if (q.startsWith('query ')) {
-          q = query.slice(2).join(' ')
-          redirectTo_(`https://dune.xyz/browse/queries?q=${encodeURIComponent(q)}`)
+          q = query.slice(2).join(' ');
+          redirectTo_(`https://dune.xyz/browse/queries?q=${encodeURIComponent(q)}`);
           break;
         }
-        redirectTo_(`https://dune.xyz/browse/dashboards?q=${encodeURIComponent(q)}`)
+        redirectTo_(`https://dune.xyz/browse/dashboards?q=${encodeURIComponent(q)}`);
         break;
       }
 
       case "ipfs": {
-        const cid = query[1]
+        const cid = query[1];
         if (!cid) {
-          redirectTo_('https://app.pinata.cloud/')
-          break
+          redirectTo_('https://app.pinata.cloud/');
+          break;
         }
-        redirectTo_(`https://gateway.ipfs.io/ipfs/${cid}`)
-        break
+        redirectTo_(`https://gateway.ipfs.io/ipfs/${cid}`);
+        break;
       }
 
       case "ipns": {
-        const url = query[1]
+        const url = query[1];
         if (!url) {
-          redirectTo_('https://app.pinata.cloud/')
-          break
+          redirectTo_('https://app.pinata.cloud/');
+          break;
         }
-        redirectTo_(`https://gateway.ipfs.io/ipns/${url}`)
-        break
+        redirectTo_(`https://gateway.ipfs.io/ipns/${url}`);
+        break;
       }
 
       case "arweave":
       case "ar": {
-        const cid = query[1]
+        const cid = query[1];
         if (!cid) {
-          redirectTo_('https://viewblock.io/arweave')
-          break
+          redirectTo_('https://viewblock.io/arweave');
+          break;
         }
-        redirectTo_(`https://arweave.net/${cid}`)
-        break
+        redirectTo_(`https://arweave.net/${cid}`);
+        break;
       }
 
       case "gm":
       case "gmi":
       case "wagmi": {
-        redirectTo_('./gm.html')
-        break
+        redirectTo_('./gm.html');
+        break;
       }
 
       case "ngmi": {
@@ -153,9 +152,9 @@ class QueryExecutor {
           'https://meta.com/',
           'https://www.sec.gov/',
           'https://www.alphabet.com/',
-        ]
-        redirectTo_(ngmis[Math.floor(Math.random()*ngmis.length)])
-        break
+        ];
+        redirectTo_(ngmis[Math.floor(Math.random()*ngmis.length)]);
+        break;
       }
 
       case "elon": {
@@ -167,36 +166,21 @@ class QueryExecutor {
           '1454876031232380928',
           '1451015695106560000',
           '1426558939336937481'
-        ]
+        ];
         const id = elon[Math.floor(Math.random()*elon.length)];
-        redirectTo_(`https://twitter.com/elonmusk/status/${id}`)
-        break
+        redirectTo_(`https://twitter.com/elonmusk/status/${id}`);
+        break;
       }
 
       default: {
         if (query.length === 1 && query[0].endsWith('.eth')) {
-          redirectTo_(`https://etherscan.io/address/${commandName}`)
+          redirectTo_(`https://etherscan.io/address/${commandName}`);
         } else {
-          redirectTo_(`http://www.google.com/search?q=${encodeURIComponent(query.join(" "))}`)
+          redirectTo_(`http://www.google.com/search?q=${encodeURIComponent(query.join(" "))}`);
         }
       }
     }
   }
-}
-
-function solScanURL_(path, env) {
-  if (env === 'devnet' || env === 'testnet') {
-    return `https://solscan.io/${path}?cluster=${env}`
-  }
-  return `https://solscan.io/${path}`;
-}
-
-function etherscanURL_(path, env) {
-  const testNets = ['ropsten', 'kovan', 'goerli', 'rinkeby'];
-  if (env && testNets.includes(env)) {
-    return `https://${env}.etherscan.io/${path}`;
-  }
-  return `https://etherscan.io/${path}`;
 }
 
 function redirectTo_(url) {
@@ -360,8 +344,8 @@ const UNI_SWAP_TOKEN_TO_CONTRACT = {
   'people': '0x7a58c0be72be218b41c608b7fe7c5bb630736c71',
   'mana': '0x0f5d2fb29fb7d3cfee444a200298f468908cc942',
   'ohm': '0x383518188c0c6d7730d91b2c03a03c837814a899',
-}
+};
 
 export {
   QueryExecutor,
-}
+};
