@@ -7,6 +7,7 @@
   "description": "The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.ccom and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.",
   "version": "1.0.0",
   "scripts": {
+    "webpack": "npx webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,4 +1,5 @@
 const {SolanaDomainConverter} = require('./solanadomainconverter.js');
+const {solScanURL, etherScanURL} = require('./scanner.js');
 
 class AddressResolver {
   constructor(hash, env) {
@@ -31,7 +32,7 @@ class AddressResolver {
   }
 
   resolveEthereumAddr_() {
-    this.url = etherscanURL_(`address/${this.hash}`, this.env);
+    this.url = etherScanURL(`address/${this.hash}`, this.env);
   }
 
   async resolveSolanaAddr_() {
@@ -40,7 +41,7 @@ class AddressResolver {
       address = await (new SolanaDomainConverter(this.hash, this.env))
         .toWalletAddress();
     }
-    this.url = solScanURL_(`account/${address}`, this.env);
+    this.url = solScanURL(`account/${address}`, this.env);
   }
 }
 
@@ -51,20 +52,6 @@ function getCoinTypeForHash_(hash) {
   return COIN_TYPE.SOLANA;
 }
 
-function solScanURL_(path, env) {
-  if (env === 'devnet' || env === 'testnet') {
-    return `https://solscan.io/${path}?cluster=${env}`;
-  }
-  return `https://solscan.io/${path}`;
-}
-
-function etherscanURL_(path, env) {
-  const testNets = ['ropsten', 'kovan', 'goerli', 'rinkeby'];
-  if (env && testNets.includes(env)) {
-    return `https://${env}.etherscan.io/${path}`;
-  }
-  return `https://etherscan.io/${path}`;
-}
 
 const COIN_TYPE = {
   'ETHEREUM' : 1,

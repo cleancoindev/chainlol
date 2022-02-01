@@ -1,4 +1,5 @@
 const {AddressResolver} = require('./addressresolver.js');
+const {etherScanURL, solScanURL} = require('./scanner.js');
 
 class QueryExecutor {
 
@@ -74,16 +75,16 @@ class QueryExecutor {
         const hash = query[1];
         const env = query[2];
         if (hash.startsWith("0x")) {
-          redirectTo_(etherscanURL_(`tx/${hash}`, env));
+          redirectTo_(etherScanURL(`tx/${hash}`, env));
         } else {
-          redirectTo_(solScanURL_(`tx/${hash}`, env));
+          redirectTo_(solScanURL(`tx/${hash}`, env));
         }
         break;
       }
 
       case "a":
       case "account":
-      case "address":    
+      case "address":
       case "contract":
       case "w":
       case "wallet": {
