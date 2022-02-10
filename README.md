@@ -1,8 +1,11 @@
 # Nike — Navigate Crypto
 
+> Use nike.wagmify.me for now, we're porting domains.
+
 The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
 
 The tool is built with JS and **runs purely locally in the browser** so there are no securty implications about sending search results to an unknown server. 
+
 
 ## Example Commands
 
