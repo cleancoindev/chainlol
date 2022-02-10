@@ -1,6 +1,6 @@
-# Wagmify.me — Navigate Crypto
+# Nike — Fastest way to Navigate Crypto
 
-The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.ccom and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
+The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
 
 The tool is built with JS and **runs purely locally in the browser** so there are no securty implications about sending search results to an unknown server. 
 
@@ -38,7 +38,7 @@ Should look like this:
 
 Call `python3 -m http.server` from the main directory, then naviagte to `http://localhost:8000/?q=commands` 
 
-## Deploying to Wagmify.me 
+## Deploying to Nike
 Once you have setup your `.env`, you can call the following command to deploy:
 
 ```
