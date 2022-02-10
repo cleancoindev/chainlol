@@ -1,4 +1,4 @@
-# Nike — Fastest way to Navigate Crypto
+# Nike — Navigate Crypto
 
 The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
 
