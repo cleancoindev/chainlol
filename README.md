@@ -1,8 +1,6 @@
-# Nike — Navigate Crypto
+# Chainlol — Navigate Crypto
 
-> Use nike.wagmify.me for now, we're porting domains.
-
-The tool makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
+Inspired by Facebook's bunnylol project, chainlol makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
 
 The tool is built with JS and **runs purely locally in the browser** so there are no securty implications about sending search results to an unknown server. 
 
@@ -36,12 +34,12 @@ Should look like this:
 <img width="507" alt="Screen Shot 2021-12-03 at 10 16 55 AM" src="https://user-images.githubusercontent.com/796815/144655260-34d032f9-b52a-46f6-9ac1-32047024db98.png">
 
 
-
-## Running locally
+## Running L
+ocally
 
 Call `python3 -m http.server` from the main directory, then naviagte to `http://localhost:8000/?q=commands` 
 
-## Deploying to Nike
+## Deploying
 Once you have setup your `.env`, you can call the following command to deploy:
 
 ```
