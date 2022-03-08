@@ -29,13 +29,12 @@ ipns | ipns kunalm.xyz | Opens the domain on IPNS.
 
 4. Make this the default search engine.
 
-Should look like this:
+It should look like this:
 
-<img width="507" alt="Screen Shot 2021-12-03 at 10 16 55 AM" src="https://user-images.githubusercontent.com/796815/144655260-34d032f9-b52a-46f6-9ac1-32047024db98.png">
+<img width="608" alt="Screen Shot 2022-03-08 at 9 53 38 AM" src="https://user-images.githubusercontent.com/791388/157298422-564b4a60-c6dd-4c5b-ba59-4647fc6efa5a.png">
 
 
-## Running L
-ocally
+## Running Locally
 
 Call `python3 -m http.server` from the main directory, then naviagte to `http://localhost:8000/?q=commands` 
 
