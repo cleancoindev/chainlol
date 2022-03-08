@@ -25,7 +25,7 @@ ipns | ipns kunalm.xyz | Opens the domain on IPNS.
 
 2. Click `Manage Search Engines`.
 
-3. Add a new search engine with the URL `https://wagmify.me/#?q=%s`. Set both name and keyword to `wagmify`.
+3. Add a new search engine with the URL `https://chainlol.wonkalabs.xyz/#?q=%s`. Set both name and keyword to `chainlol`.
 
 4. Make this the default search engine.
 
@@ -40,8 +40,12 @@ ocally
 Call `python3 -m http.server` from the main directory, then naviagte to `http://localhost:8000/?q=commands` 
 
 ## Deploying
-Once you have setup your `.env`, you can call the following command to deploy:
 
+Currently, chainlol is hosted on [fleek](https://fleek.co/).
+
+Alternatively, you can host it on ipfs:
 ```
 ipfs-deploy . -p pinata -d cloudflare -t "wagmify.me $(date +"%m-%d-%Y %T")"
 ```
+
+(this requires npm `ipfs-deploy` and setting a few .env variables. See [here](https://kunalm.xyz/posts/ipfs-website.html) for more details)
