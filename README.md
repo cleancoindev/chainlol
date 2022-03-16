@@ -1,6 +1,6 @@
 # Chainlol — Navigate Crypto
 
-Inspired by Facebook's bunnylol project, chainlol makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
+Inspired by Facebook's [bunnylol](https://www.quora.com/What-is-Facebooks-bunnylol) project, chainlol makes it faster to navigate to common crypto sites — instead of going to CoinGeiko.com and searching for olympus, you can just type in `p ohm` and the tool will automatically redirect you.
 
 The tool is built with JS and **runs purely locally in the browser** so there are no securty implications about sending search results to an unknown server. 
 
@@ -42,9 +42,9 @@ Call `python3 -m http.server` from the main directory, then naviagte to `http://
 
 Currently, chainlol is hosted on [fleek](https://fleek.co/).
 
-Alternatively, you can host it on ipfs:
+Alternatively, you can host it on ipfs through Pinata:
 ```
-ipfs-deploy . -p pinata -d cloudflare -t "wagmify.me $(date +"%m-%d-%Y %T")"
+ipfs-deploy . -p pinata -d cloudflare -t "your-domain.xyz $(date +"%m-%d-%Y %T")"
 ```
 
 (this requires npm `ipfs-deploy` and setting a few .env variables. See [here](https://kunalm.xyz/posts/ipfs-website.html) for more details)
