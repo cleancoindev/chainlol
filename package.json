@@ -23,7 +23,7 @@
   "homepage": "https://github.com/TritonLabs/wagmify.me#readme",
   "dependencies": {
     "@bonfida/spl-name-service": "^0.1.24",
-    "@solana/spl-name-service": "^0.1.3",
+    "@solana/spl-name-service": "^0.1.4",
     "@solana/web3.js": "^1.31.0",
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
